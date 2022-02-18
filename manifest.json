@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "AdvertisingKiller",
+  "short_name": "AdKill",
+  "description": "Removes audio Advertising on Spotify™ Web Player",
+  "version": "1.0.0",
+  "permissions": 
+   [
+      "webRequest",
+      "webRequestBlocking",
+	   "*://open.spotify.com/*"
+   ],
+   "icons": 
+   {
+      "128": "images/icon_128.png"
+   },
+   "browser_action": {
+      "default_icon": "images/icon_128.png",
+      "default_popup": "popup/popup.html"
+   },
+   "background":
+   {
+    "scripts": ["background.js"],
+    "persistent": true
+   },
+   "content_scripts": 
+   [
+  	{
+  	  "matches": ["https://open.spotify.com/*"],
+  	  "js": ["content_script.js"],
+  	  "run_at": "document_start"
+  	},
+    {
+      "matches": ["https://open.spotify.com/*"],
+      "css": ["styles.css"]
+    }
+   ],
+	"web_accessible_resources": [ "injected/*"]
+}
